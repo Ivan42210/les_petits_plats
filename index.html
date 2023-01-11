@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/assets/scss/main.css">
+    <link rel="stylesheet" href="/public/assets/css/style.css">
+    <script src="/public/assets/css/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <title>les petits plats</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-fluid d-flex justify-content-center align-items-center">
+            <a class="navbar-brand" href="#"><img src="/public/assets/img/logo.png" style="width: 300px;" alt=""></a>
+
+        </div>
+    </nav>
+
+
+
+    <form class="mt-4 d-flex justify-content-center align-items-center container mx-auto">
+        <input type="search" name="q" placeholder="Rechercher" class="w-100 rounded-start border border-0 searchBar bg-body-tertiary">
+        <button type="submit" class="rounded-end border border-0 d-flex justify-content-center align-items-center submit-b bg-body-tertiary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg></button>
+    </form>
+
+    <section class=" container row mx-auto p-0 my-5">
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap">
+            <button class="btn btn-primary text-light"><span class="mr-2 tag_button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+              </svg></span>example</button>
+
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap">
+
+
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap">
+
+
+        </div>
+
+
+    </section>
+
+    <section class="container mx-auto d-flex mt-4 mb-4">
+        <div class="btn-group gap-4">
+            <button id="ingredientDropdown" type="button" class="btn btn-primary text-light dropdown-toggle p-3" data-bs-toggle="dropdown">
+              Ingrédient
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+            <button id="applianceDropdown" type="button" class="btn btn-success text-light dropdown-toggle rounded p-3" data-bs-toggle="dropdown">
+                Appareils
+              </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+            <button id="ustensilsDropdown" type="button" class="btn btn-danger dropdown-toggle text-light rounded p-3" data-bs-toggle="dropdown">
+                Ustensils
+              </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+        </div>
+    </section>
+    <section class="container mx-auto my-5">
+        <div id="cardSection" class="row">
+
+        </div>
+
+    </section>
+
+
+    <script src="/public/assets/css/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="/public/assets/css/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="module" src="/data/recipes.js"></script>
+    <script type="module" src="/scripts/factories/recipeCard.js"></script>
+    <script type="module" src="/scripts/factories/listFactory.js"></script>
+    <script type="module" src="/scripts/pages/index.js"></script>
+</body>
+
+</html>

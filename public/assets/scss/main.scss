@@ -3,7 +3,21 @@
 $blue: #3282F7;
 $green:#68D9A4;
 $red: #ED6454;
+$categoryColors: (ingredients:$blue, appliance:$green, ustensils:$red);
 
 /*custom mixins*/
+
+@mixin categoryColors {
+    @each $clr,
+    $categoryColor in $categoryColors {
+        &-#{$clr} {
+            background-color: map-get($categoryColors, $clr);
+        }
+    }
+}
+
+.color {
+    @include categoryColors();
+}
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';

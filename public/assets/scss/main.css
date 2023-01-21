@@ -1,6 +1,16 @@
 @charset "UTF-8";
 /* custom variables*/
 /*custom mixins*/
+.color-ingredients {
+  background-color: #3282F7;
+}
+.color-appliance {
+  background-color: #68D9A4;
+}
+.color-ustensils {
+  background-color: #ED6454;
+}
+
 /*!
  * Bootstrap  v5.3.0-alpha1 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors

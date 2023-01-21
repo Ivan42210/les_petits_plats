@@ -29,13 +29,7 @@
     </form>
 
     <section class=" container row mx-auto p-0 my-5">
-        <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap">
-            <button class="btn btn-primary text-light"><span class="mr-2 tag_button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-              </svg></span>example</button>
 
-        </div>
         <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-wrap">
 
 
@@ -48,48 +42,41 @@
 
     </section>
 
-    <section class="container mx-auto d-flex mt-4 mb-4">
-        <div class="btn-group gap-4">
-            <button id="ingredientDropdown" type="button" class="btn btn-primary text-light dropdown-toggle p-3" data-bs-toggle="dropdown">
-              Ingrédient
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-            </ul>
-            <button id="applianceDropdown" type="button" class="btn btn-success text-light dropdown-toggle rounded p-3" data-bs-toggle="dropdown">
-                Appareils
-              </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-            </ul>
-            <button id="ustensilsDropdown" type="button" class="btn btn-danger dropdown-toggle text-light rounded p-3" data-bs-toggle="dropdown">
-                Ustensils
-              </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-            </ul>
+    <section class="container mx-auto">
+        <div id="dropDownContainer" class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+            <div id="selectorOne" class="selectorArea">
+                <button class="ddbtn btn btn-primary text-light">
+                    <input id="dropDownIngredient" class="bg-transparent border-0 text-light dropdown-hover" type="text" placeholder="Rechercher ingredients">
+                   <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <ul id="ingredientSub" class="inactive bg-primary text-light list-group p-2 d-none auto-row">
+
+                </ul>
+            </div>
+
+            <div class="selectorArea">
+                <button class="ddbtn btn btn-success text-light d-flex">
+                    <input id="dropDownAppliance" class="bg-transparent border-0 text-light dropdown-hover" type="text">
+                   <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <ul id="ApplianceSub" class="inactive bg-success text-light list-group p-2 d-none auto-row">
+                </ul>
+            </div>
+            <div class="selectorArea">
+                <button class="ddbtn btn btn-danger text-light">
+                    <input id="dropDownUstensils" class="inactive bg-transparent border-0 text-light dropdown-hover" type="text">
+                   <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <ul id="UstensilsSub" class="bg-danger text-light list-group p-2 d-none auto-row">
+                </ul>
+            </div>
+
         </div>
     </section>
+
+
     <section class="container mx-auto my-5">
-        <div id="cardSection" class="row">
+        <div id="cardSection" class="row gy-3">
 
         </div>
 
@@ -98,9 +85,12 @@
 
     <script src="/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/b00e3f61b3.js" crossorigin="anonymous"></script>
     <script type="module" src="/data/recipes.js"></script>
     <script type="module" src="/scripts/factories/recipeCard.js"></script>
+    <script type="module" src="/scripts/utils/filters.js"></script>
     <script type="module" src="/scripts/factories/listFactory.js"></script>
+    <script src="/scripts/utils/dropdown.js"></script>
     <script type="module" src="/scripts/pages/index.js"></script>
 </body>
 

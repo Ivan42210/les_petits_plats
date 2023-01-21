@@ -1,5 +1,6 @@
 import { recipes } from "../../data/recipes.js";
 import { cardFactory } from "../factories/recipeCard.js";
+import { makeList } from "../factories/listFactory.js";
 
 
 
@@ -19,3 +20,6 @@ recipes.forEach((recipe) => {
 
 
 /*list to dropdown*/
+
+const testDatas = makeList(recipes);
+console.log(testDatas);

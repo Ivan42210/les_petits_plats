@@ -9,9 +9,22 @@
 }
 
 .my-card {
-    height: 364px;
+    width: 30%;
+    max-width: 30%;
 }
 
 .fs-card {
     font-size: 12px;
+}
+
+.card-hover:hover {
+    transform: scale(1.05);
+}
+
+.card-transition {
+    transition: all .5s ease-in-out;
+}
+
+.disabled {
+    display: none;
 }

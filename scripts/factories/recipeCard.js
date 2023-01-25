@@ -1,4 +1,4 @@
-export function cardFactory(recipeDatas) {
+export async function cardFactory(recipeDatas) {
     const { name, time, description, ingredients } = recipeDatas;
     const ingredientList = [];
 

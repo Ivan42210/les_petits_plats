@@ -3,7 +3,7 @@ export function listTitleFilters(array) {
     const listTitleApp = (Object.keys(array[0]))[6];
     const listTitleUst = (Object.keys(array[0]))[7];
     const listTitles = [listTtitleIng, listTitleApp, listTitleUst];
-
+    console.log(listTitles);
 
 
     /* Création des boutons filtres*/
@@ -22,9 +22,11 @@ export function listTitleFilters(array) {
         }
 
         array.forEach((element) => {
+
             const div = document.createElement('div');
             div.setAttribute('id', `${element}Dropdown`);
-            div.className = `color-${element} p-2 rounded`;
+            div.className = `color-${element} p-3 rounded ddbtn inactive`;
+            div.setAttribute('aria-label', `${element}`)
             const input = document.createElement('input');
             input.setAttribute('type', 'text');
             input.setAttribute('name', `${element}`);
@@ -36,10 +38,14 @@ export function listTitleFilters(array) {
             icon.className = "fa-solid fa-chevron-down";
             label.appendChild(icon);
             label.setAttribute('for', `${element}`);
+            const listArea = document.createElement('div');
+            listArea.setAttribute('id', `${element}Area`);
+            listArea.className = 'row row-cols-3';
             div.appendChild(input);
             div.appendChild(label);
-
+            div.appendChild(listArea);
             filterArea.appendChild(div);
+            console.log(filterArea);
         });
     }
 
@@ -56,60 +62,39 @@ export function makeList(array) {
 
     const ustensilsItemsList = [...new Set(array.map((recipe) => recipe.ustensils[0].trim().toLowerCase()))];
 
+
     const allLists = { ingredients: ingredientItemsList, appliance: applianceItemsList, ustensils: ustensilsItemsList };
 
-    console.log(allLists)
 
-    /*function listFilters(){
-        e.preventDefault();
-        allLists.array.forEach(element => {
-            
-        });
-    }*/
+    function createDropElements(arrays) {
+        arrays.forEach((array) => {
+            const span = document.createElement('span');
+            span.className = 'dropdown-item';
+            span.textContent = array;
+            return span;
+        })
+    }
 
+    function createDropLists(arrays) {
+        const btns = document.querySelectorAll('input');
+        btns.forEach((btn) => {
+            btn.addEventListener('click', (e) => { openDrop(e, arrays) });
+        })
 
-    /* applianceItemsList.forEach((app) => {
-         const parent = document.getElementById('ApplianceSub');
-         const liEl = document.createElement('li');
-         const elBtn = document.createElement('button');
-         elBtn.className = "border-0 bg-transparent text-light"
-         elBtn.textContent = app;
-         liEl.appendChild(elBtn);
-         parent.appendChild(liEl);
-     });
+        function openDrop(e, arrays) {
+            e.preventDefault();
+            const parent = e.target.parentNode;
+            const i = parent.childNodes[1].childNodes[0];
+            const section = parent.childNodes[2];
+            const { ingredients, appliance, ustensils } = arrays;
+            console.log(parent)
 
-     ingredientItemsList.forEach((ing) => {
-         const parent = document.getElementById('ingredientSub');
-         const liEl = document.createElement('li');
-         const elBtn = document.createElement('button');
-         elBtn.className = "border-0 bg-transparent text-light"
-         elBtn.textContent = ing;
-         liEl.appendChild(elBtn);
-         parent.appendChild(liEl);
-     });
+            if (parent.getAttribute('aria-label') === 'ingredients' && parent.classList.contains('inactive' === true)) {
+                console.log(section)
+            }
 
-     ustensilsItemsList.forEach((ust) => {
-         const parent = document.getElementById('UstensilsSub');
-         const liEl = document.createElement('li');
-         const elBtn = document.createElement('button');
-         elBtn.className = "border-0 bg-transparent text-light"
-         elBtn.textContent = ust;
-         liEl.appendChild(elBtn);
-         parent.appendChild(liEl);
-     });*/
+        }
 
-
-
-
+    }
+    return createDropLists(allLists);
 }
-
-
-
-
-/*export function createLists(element) {
-    /*const ingredList = [...new Set((element).map(({ ingredients: { ingredient } }) => {
-        return `${ingredient}`;
-    }))];*/
-
-/*  console.log(ingredList);
-}*/

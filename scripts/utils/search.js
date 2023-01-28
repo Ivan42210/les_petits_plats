@@ -13,7 +13,7 @@ export function searchBar(arrays) {
     function getResults(e) {
         e.stopPropagation()
         parent.innerHTML = '';
-        resultsArray = [];
+
 
         console.log(searchInput.value.length);
 
@@ -23,8 +23,11 @@ export function searchBar(arrays) {
                 //console.log(array.name.toLowerCase());
 
                 if (array.name.toLowerCase().includes(searchInput.value)) {
+                    resultsArray = [];
                     resultsArray.push(array);
-                    resultsArray.forEach((el) => {
+                    const retrieveResults = [...new Set(resultsArray)];
+                    console.log(retrieveResults);
+                    retrieveResults.forEach((el) => {
                         const cardDom = new cardFactory(el);
                         parent.appendChild(cardDom);
                     });
@@ -34,8 +37,11 @@ export function searchBar(arrays) {
 
 
         } else if (searchInput.value.length <= 3) {
+            resultsArray = [];
             resultsArray = Object.values(arrays);
-            resultsArray.forEach((el) => {
+            const retrieveResults = [...new Set(resultsArray)];
+            console.log(retrieveResults);
+            retrieveResults.forEach((el) => {
                 const cardDom = new cardFactory(el);
                 parent.appendChild(cardDom);
             });
@@ -45,8 +51,8 @@ export function searchBar(arrays) {
 
     }
 
-
-    resultsArray.forEach((el) => {
+    const retrieveResults = [...new Set(resultsArray)];
+    retrieveResults.forEach((el) => {
         const cardDom = new cardFactory(el);
         parent.appendChild(cardDom);
     });

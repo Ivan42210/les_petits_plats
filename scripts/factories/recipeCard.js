@@ -1,5 +1,5 @@
-export async function cardFactory(recipeDatas) {
-    const { name, time, description, ingredients } = recipeDatas;
+export function cardFactory(arrays) {
+    const { name, time, description, ingredients } = arrays;
     const ingredientList = [];
 
     for (const x in ingredients) {
@@ -30,7 +30,7 @@ export async function cardFactory(recipeDatas) {
         <section class="card-body d-flex justify-content-between">
         <ul class="w-50 pr-1">${ingredientPart}</ul>
         <p class= "w-50 text-justify overflow-hidden fs-card h-50 text-truncate text-justify" style="max-height: 150px;">${description}</p></section>`;
-        return div
+        return div;
 
     }
 

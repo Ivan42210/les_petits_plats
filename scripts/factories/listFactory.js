@@ -3,7 +3,6 @@ export function listTitleFilters(array) {
     const listTitleApp = (Object.keys(array[0]))[6];
     const listTitleUst = (Object.keys(array[0]))[7];
     const listTitles = [listTtitleIng, listTitleApp, listTitleUst];
-    console.log(listTitles);
 
 
     /* Création des boutons filtres*/
@@ -45,7 +44,7 @@ export function listTitleFilters(array) {
             div.appendChild(label);
             div.appendChild(listArea);
             filterArea.appendChild(div);
-            console.log(filterArea);
+            // console.log(filterArea);
         });
     }
 
@@ -90,7 +89,7 @@ export function makeList(array) {
             console.log(parent)
 
             if (parent.getAttribute('aria-label') === 'ingredients' && parent.classList.contains('inactive' === true)) {
-                console.log(section)
+                console.log('salut')
             }
 
         }

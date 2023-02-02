@@ -11,6 +11,34 @@
   background-color: #ED6454;
 }
 
+/*custom elements*/
+.cursor-p {
+  cursor: pointer;
+}
+.cursor-p:hover {
+  background-color: rgba(255, 255, 255, 0.264);
+}
+
+.dropdown-input::-webkit-input-placeholder {
+  color: white;
+}
+
+.dropdown-input::-moz-placeholder {
+  color: white;
+}
+
+.dropdown-input:-ms-input-placeholder {
+  color: white;
+}
+
+.dropdown-input::-ms-input-placeholder {
+  color: white;
+}
+
+.dropdown-input::placeholder {
+  color: white;
+}
+
 /*!
  * Bootstrap  v5.3.0-alpha1 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors

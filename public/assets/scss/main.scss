@@ -26,7 +26,7 @@ $categoryColors: (ingredients:$blue, appliance:$green, ustensils:$red);
 .cursor-p {
     cursor: pointer;
     &:hover {
-        background-color: rgba(255, 255, 255, 0.264);
+        background-color: rgba(255, 255, 255, 0.264)!important;
     }
 }
 

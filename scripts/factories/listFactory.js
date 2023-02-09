@@ -30,7 +30,7 @@ export function dropdownSection(arrays) {
             input.setAttribute('type', 'text');
             input.setAttribute('name', `${element}`);
             input.setAttribute('placeholder', 'Rechercher par ' + categorize(element));
-            input.className = 'bg-transparent border-0 dropdown-input';
+            input.className = 'bg-transparent border-0 dropdown-input text-light';
             const label = document.createElement('label');
             label.className = 'text-light mr-5 ddbtn cursor-p p-2 rounded-circle';
             const icon = document.createElement('i');
@@ -73,10 +73,10 @@ export function dropdownSection(arrays) {
 
 export function makeList(array) {
     //récupère les données et les classe par liste
+
     const applianceItemsList = [...new Set((array.map((recipe) => recipe.appliance.trim().toLowerCase())))];
-
-    const ingredientItemsList = [...new Set(((array.map((recipe) => recipe.ingredients.map((ing) => ing.ingredient.trim().toLowerCase()))).flat()))]
-
+    const ingredientItemsList = [...new Set(((array.map((recipe) => recipe.ingredients.map((ing) => ing.ingredient.trim().toLowerCase()))).flat()))];
+    console.log([...new Set(((array.map((recipe) => recipe.ingredients.map((ing) => ing.ingredient.trim().split(' '))))))])
     const ustensilsItemsList = [...new Set(array.map((recipe) => recipe.ustensils[0].trim().toLowerCase()))];
     const allLists = { ingredients: ingredientItemsList, appliance: applianceItemsList, ustensils: ustensilsItemsList };
     // pour chaque liste
@@ -89,22 +89,20 @@ export function makeList(array) {
         allLists[object].forEach((el) => {
 
             const span = document.createElement('span');
-            span.className = `cursor-p ${object}-item`;
-            const li = document.createElement('li');
-            li.className = 'text-light list-group-item bg-transparent border-0';
-            li.textContent = el;
-            span.appendChild(li);
+            span.className = `cursor-p text-light list-group-item bg-transparent border-0`;
+            span.setAttribute('aria-label', `${object}`)
+            span.textContent = el;
+            // const li = document.createElement('li');
+            // li.className = 'text-light list-group-item bg-transparent border-0';
+            // li.textContent = el;
+            // span.appendChild(li);
             parent.appendChild(span);
-
 
         });
 
 
 
     }
-
-
-
 
 
 

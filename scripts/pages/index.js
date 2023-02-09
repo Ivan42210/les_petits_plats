@@ -1,19 +1,60 @@
 import { recipes } from "../../data/recipes.js";
 import { dropdownSection, makeList } from "../factories/listFactory.js";
-import { dropdownToggle } from "../utils/dropdown.js";
+import { dropdownToggle, inputOpenFuntion } from "../utils/dropdown.js";
 import { cardFactory } from "../factories/recipeCard.js";
 
+let resultsArray = [];
+let resultIngredients = [];
+let resultAppliance = [];
+let resultUstensils = [];
 
 
 
 function dropAndTags(arrays) {
     dropdownSection(arrays);
-    makeList(arrays)
+    makeList(arrays);
+    /* set togle dropdown*/
     const btns = document.querySelectorAll('.ddbtn');
-    console.log(btns)
     btns.forEach((btn) => {
-        btn.addEventListener('click', (e) => { dropdownToggle(e) })
+            btn.addEventListener('click', (e) => { dropdownToggle(e) })
+        })
+        /* set input dropdown function*/
+    const dropInputs = document.querySelectorAll('.dropdown-input');
+    console.log(dropInputs);
+    dropInputs.forEach((btn) => { btn.addEventListener('input', (e) => { inputOpenFuntion(e) }) })
+
+    /* set tags function*/
+    resultIngredients = [];
+    resultAppliance = [];
+    resultUstensils = [];
+    const itemsBtn = document.querySelectorAll('.list-group-item');
+    itemsBtn.forEach((btn) => {
+        btn.addEventListener('click', (e) => getTagApi(e));
     })
+
+    /**/
+
+
+
+    function getTagApi(e) {
+        e.preventDefault();
+        //  console.log(e.target.getAttribute('aria-label'))
+        const label = e.target.getAttribute('aria-label');
+
+        if (label === "ingredients") {
+            resultIngredients.push(e.target.textContent);
+        } else if (label === "appliance") {
+            resultAppliance.push(e.target.textContent);
+        } else if (label === "ustensils") {
+            resultUstensils.push(e.target.textContent);
+        }
+
+        console.log(resultIngredients, resultAppliance, resultUstensils)
+            //console.log(resultIngredients)
+    }
+
+
+
 }
 
 
@@ -26,9 +67,10 @@ function dropAndTags(arrays) {
 function search(arrays) {
     const searchInput = document.getElementById('searchBar');
     const parent = document.getElementById('cardSection');
-    let resultsArray = Object.values(arrays);
+    resultsArray = Object.values(arrays);
 
     searchInput.addEventListener('input', (e) => getResults(e, arrays));
+
 
 
 
@@ -72,6 +114,10 @@ function search(arrays) {
         const cardDom = new cardFactory(el);
         parent.appendChild(cardDom);
     })
+
+
+
+
 }
 
 

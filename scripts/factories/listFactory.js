@@ -54,8 +54,11 @@ export function dropdownSection(arrays) {
         const section = document.getElementById('tagSection');
         array.forEach((el) => {
             const div = document.createElement('div');
-            div.className = "col-lg-4 col-md-6 col-sm-12";
-            div.setAttribute('aria-label', `${el}`);
+            div.className = 'col-lg-4 col-md-6 col-sm-12';
+            const divCol = document.createElement('div');
+            divCol.className = `${el}-section row gap-2`;
+            divCol.setAttribute('aria-label', `${el}`);
+            div.appendChild(divCol);
             section.appendChild(div)
         });
 
@@ -66,7 +69,7 @@ export function dropdownSection(arrays) {
 
     createFilterBtn(listTitles);
     createTagsSection(listTitles);
-    console.log(listTitles);
+    //console.log(listTitles);
 
 
 }
@@ -76,7 +79,7 @@ export function makeList(array) {
 
     const applianceItemsList = [...new Set((array.map((recipe) => recipe.appliance.trim().toLowerCase())))];
     const ingredientItemsList = [...new Set(((array.map((recipe) => recipe.ingredients.map((ing) => ing.ingredient.trim().toLowerCase()))).flat()))];
-    console.log([...new Set(((array.map((recipe) => recipe.ingredients.map((ing) => ing.ingredient.trim().split(' '))))))])
+    // console.log([...new Set(((array.map((recipe) => recipe.ingredients.map((ing) => ing.ingredient.trim().split(' '))))))])
     const ustensilsItemsList = [...new Set(array.map((recipe) => recipe.ustensils[0].trim().toLowerCase()))];
     const allLists = { ingredients: ingredientItemsList, appliance: applianceItemsList, ustensils: ustensilsItemsList };
     // pour chaque liste

@@ -50,14 +50,13 @@ function dropAndTags(arrays) {
 
         if (label === "ingredients") {
             resultIngredients.push(e.target.textContent);
-            // console.log(resultIngredients);
             ingredientSection.innerHTML = '';
             resultIngredients.forEach((el) => {
                 const tagDom = new createTags(el);
                 tagDom.classList.add('bg-primary');
                 tagDom.classList.add('ingredient_tag');
                 ingredientSection.appendChild(tagDom);
-                returnResult(resultIngredients);
+                returnResult(arrays);
 
             })
             e.target.classList.add('d-none');
@@ -83,13 +82,18 @@ function dropAndTags(arrays) {
                                 tagDom.classList.add('bg-primary');
                                 tagDom.classList.add('ingredient_tag');
                                 ingredientSection.appendChild(tagDom);
+
+                                returnResult(arrays);
                             }
+
                         }
                     })
 
                 });
 
             })
+            console.log('TEST INGREDIENT')
+            console.log(resultIngredients)
 
         } else if (label === "appliance") {
             resultAppliance.push(e.target.textContent);
@@ -174,15 +178,15 @@ function dropAndTags(arrays) {
         }
 
 
-        //console.log(resultapps)
+        console.log('test résultats généraux');
+        console.log(resultIngredients, resultAppliance, resultUstensils)
+
 
 
     }
 
 
 
-
-    console.log(resultIngredients, resultAppliance, resultUstensils)
 
 }
 
@@ -224,13 +228,14 @@ function search(arrays) {
 function returnResult(arrays) {
     const parent = document.getElementById('cardSection');
     const searchInput = document.getElementById('searchBar');
-    parent.innerHTML = '';
+
     if (searchInput.value.length >= 3 && resultIngredients.length === 0 && resultAppliance.length === 0 && resultUstensils.length === 0) {
 
         for (let array of arrays) {
             //console.log(array.name.toLowerCase());
 
             if (array.name.toLowerCase().includes(searchInput.value)) {
+                parent.innerHTML = '';
                 resultsArray = [];
                 resultsArray.push(array);
                 const retrieveResults = [...new Set(resultsArray)];
@@ -244,43 +249,95 @@ function returnResult(arrays) {
             }
         }
 
-    } else if (searchInput.value.length <= 3) {
-        resultsArray = [];
-        resultsArray = Object.values(arrays);
-        const retrieveResults = [...new Set(resultsArray)];
-        console.log(retrieveResults);
-        retrieveResults.forEach((el) => {
-            const cardDom = new cardFactory(el);
-            parent.appendChild(cardDom);
-        });
-    } else if (searchInput.value.length >= 3 && resultIngredients.length >= 0 && resultAppliance.length >= 0 && resultUstensils.length >= 0) {
-        for (let array of arrays) {
-            if (array.name.toLowerCase().includes(searchInput.value) || array.ingredients.map((ing) => ing.ingredient.toLowerCase()).includes(Object.values(resultIngredients)) ||
-                array.appliance.includes(Object.values(resultAppliance)) || array.ustensils.includes(Object.values(resultUstensils))) {
-                resultsArray = [];
-                resultsArray.push(array);
-                /* const retrieveResults = [...new Set(resultsArray)];
-                 console.log(retrieveResults);
+    }
+    /*else if (searchInput.value.length <= 3) {
+           resultsArray = [];
+           resultsArray = Object.values(arrays);
+           const retrieveResults = [...new Set(resultsArray)];
+           console.log(retrieveResults);
+           retrieveResults.forEach((el) => {
+               const cardDom = new cardFactory(el);
+               parent.appendChild(cardDom);
+           });
+       }*/
+    else if (searchInput.value.length >= 3 || resultIngredients.length >= 0 || resultAppliance.length >= 0 || resultUstensils.length >= 0) {
 
-                 retrieveResults.forEach((el) => {
-                     const cardDom = new cardFactory(el);
-                     parent.appendChild(cardDom);
-                 });*/
-                console.log(resultsArray);
+        for (let array of arrays) {
+
+            /* console.log(array.ingredients[0].ingredient)
+             if ( /*(searchInput.value !== 'undefined' && array.name.toLowerCase().includes(searchInput.value)) &&*/
+            /* for(let i in ingredients){array.ingredients[i].ingredient }   && */
+            /* array.appliance.includes(Object.values(resultAppliance)) && array.ustensils.includes(Object.values(resultUstensils))) {
+             resultsArray = [];
+             resultsArray.push(array);
+             const retrieveResults = [...new Set(resultsArray)];
+             console.log(retrieveResults);
+
+             retrieveResults.forEach((el) => {
+                 const cardDom = new cardFactory(el);
+                 parent.appendChild(cardDom);
+             });
+
+             console.log(resultsArray);*/
+
+            for (let i in array.ingredients) {
+                console.log(searchInput.value)
+
+                // console.log('valeur résultat ingredient')
+                console.log(Object.values(resultIngredients))
+                    /*     if (array.ingredients[i].ingredient.toLowerCase().includes(Object.values(resultIngredients)) && array.name.toLowerCase().indexOf(searchInput.value) != -1) {
+                             resultsArray = [];
+                             parent.innerHTML = '';
+                             resultsArray.push(array);
+                             //console.log('premier résultat')
+                             //console.log(resultsArray);
+
+                             for (let i in retrieveResults) {
+                                 const cardDom = new cardFactory(retrieveResults[i]);
+                                 parent.appendChild(cardDom);
+                             }
+                             /*   retrieveResults.forEach((el) => {
+                                    const cardDom = new cardFactory(el);
+                                    parent.appendChild(cardDom);
+                                });*/
+                    /*    } else {
+                            const cardDom = new cardFactory(array);
+                            parent.appendChild(cardDom)
+                        }
+                    }*/
 
             }
+            /* } else if (searchInput.value.length === 0 && resultIngredients.length === 0 && resultAppliance.length === 0 && resultUstensils.length === 0) {
+                 parent.innerHTML = '';
+                 const arrayCleaned = [...new Set(arrays)];
+                 arrayCleaned.forEach((el) => {
+                     const cardDom = new cardFactory(el);
+                     parent.appendChild(cardDom);
+                 })*/
         }
+
     }
 
 
-}
 
 
 
 
+    /*   function test(arrays) {
+           let testResult = [];
+           for (let array of arrays) {
 
 
-/*list to dropdown*/
+               if (array.name.toLowerCase().indexOf('coco') != -1) {
+                   testResult.push(array);
+                   console.log("test d'algorithme")
+                   console.log(testResult)
+               }
+           }
+       }*/
 
-dropAndTags(recipes)
-search(recipes);
+
+    /*list to dropdown*/
+
+    dropAndTags(recipes)
+    search(recipes)

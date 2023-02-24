@@ -1,53 +1,17 @@
-import { cardFactory } from "../factories/recipeCard.js";
+/*dropdown result*/
+
+export function advancedFilters(arrays, value, output) {
 
 
-export function searchBar(arrays) {
-    const searchInput = document.getElementById('searchBar');
-    const parent = document.getElementById('cardSection');
-    let resultsArray = Object.values(arrays);
+    const result = arrays.filter(function(arr) { return arr.name.toLowerCase().indexOf(value.toLowerCase()) != -1 })
 
-    searchInput.addEventListener('input', (e) => getResults(e, arrays));
+    output.push(result)
 
 
-
-
-    function getResults(e) {
-        e.stopPropagation()
-        parent.innerHTML = '';
-        if (searchInput.value.length >= 3) {
-
-            for (let array of arrays) {
-                //console.log(array.name.toLowerCase());
-
-                if (array.name.toLowerCase().includes(searchInput.value)) {
-                    resultsArray = [];
-                    resultsArray.push(array);
-                    const retrieveResults = [...new Set(resultsArray)];
-                    console.log(retrieveResults);
-
-                    retrieveResults.forEach((el) => {
-                        const cardDom = new cardFactory(el);
-                        parent.appendChild(cardDom);
-                    });
-
-                }
-            }
-
-        } else if (searchInput.value.length <= 3) {
-            resultsArray = [];
-            resultsArray = Object.values(arrays);
-            const retrieveResults = [...new Set(resultsArray)];
-            console.log(retrieveResults);
-            retrieveResults.forEach((el) => {
-                const cardDom = new cardFactory(el);
-                parent.appendChild(cardDom);
-            });
-        }
-    }
-
-    const retrieveResults = [...new Set(resultsArray)];
-    retrieveResults.forEach((el) => {
-        const cardDom = new cardFactory(el);
-        parent.appendChild(cardDom);
-    })
 }
+
+/*   if (ing.ingredient.toLowerCase().indexOf(value) != -1) {
+               resultTest.push(arrays.map((arr) => arr));
+               console.log(resultTest)
+
+           }*/

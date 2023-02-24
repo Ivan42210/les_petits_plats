@@ -88,17 +88,16 @@ export function makeList(array) {
     //foreach sur chacun des objets du tableau il peut être tertiairisé
     for (let object in allLists) {
         const parent = document.getElementById(`${object}Area`);
-
+        // console.log('controle des listes')
+        // console.log(object)
         allLists[object].forEach((el) => {
 
-            const span = document.createElement('span');
-            span.className = `cursor-p text-light list-group-item bg-transparent border-0`;
-            span.setAttribute('aria-label', `${object}`)
-            span.textContent = el;
+
             // const li = document.createElement('li');
             // li.className = 'text-light list-group-item bg-transparent border-0';
             // li.textContent = el;
             // span.appendChild(li);
+            const span = new createSpan(el, object)
             parent.appendChild(span);
 
         });
@@ -109,5 +108,15 @@ export function makeList(array) {
 
 
 
+
+}
+
+function createSpan(element, category) {
+    const span = document.createElement('span');
+    span.className = `cursor-p text-light list-group-item bg-transparent border-0`;
+    span.setAttribute('aria-label', `${category}`);
+    span.setAttribute('value', `${element}`)
+    span.textContent = element;
+    return span
 
 }

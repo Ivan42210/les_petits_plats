@@ -5,10 +5,13 @@ import { tagFn, closeTag } from "../utils/apiTags.js";
 import { removeArray } from "../utils/removeArray.js";
 import { cardFactory } from "../factories/recipeCard.js";
 
+let value = 0;
 let resultsArray = [];
 let resultIngredients = [];
 let resultAppliance = [];
 let resultUstensils = [];
+
+
 
 const parentCards = document.getElementById('cardSection');
 
@@ -26,15 +29,17 @@ function setCardFirst(arrays) {
 
 function searchBar(arrays) {
     const searchInput = document.getElementById('searchBar');
-    searchInput.addEventListener('input', (e) => getSearchBarValue(e));
+    searchInput.addEventListener('input', (e) => { searchFn(e) });
 
-    function getSearchBarValue(e) {
+    function searchFn(e) {
+
         e.stopPropagation();
-        const searchValue = searchInput.value;
-        takeDatas(arrays, searchValue);
+        value = searchInput.value
+        takeDatas(arrays);
 
     }
 }
+
 
 /*set dropDowns*/
 
@@ -104,88 +109,93 @@ function DropdownPart(arrays) {
 
 
 
-function takeDatas(arrays, searchValue) {
+function takeDatas(arrays) {
+    console.log(value)
+    let searchResult = []
 
-    /* console.log(resultIngredients)
-     console.log(resultUstensils);
-     console.log(resultAppliance)*/
-    console.log(searchValue);
+    if (value.length > 3) {
+        console.log(value)
+        for (let array of arrays) {
+
+            const arrayName = array.name.toLowerCase();
+
+            if (arrayName.indexOf(value) != -1) {
+
+                searchResult.push(array);
+
+            }
+        }
+    } else if (value.length < 3) {
+        searchResult = arrays;
+    }
+
+
+
+
+
+
+
     parentCards.innerHTML = '';
 
-    for (let array of arrays) {
-        let sum = 0
-        let a = 0
-        let b = 0
-        let c = 0
-        let d = 0
+    let sum = 0
+    let a = 0
+    let b = 0
+    let c = 0
 
-        const arrayIngredients = array.ingredients.map((el) => { return el.ingredient.toLowerCase().trim() });
-        const arrayAppliance = array.appliance.toLowerCase();
-        const arrayUtensils = array.ustensils.map((el) => { return el }).flat();
-        const arrayName = array.name.toLowerCase().split();
+    if (searchResult.length != 0 /*&& resultIngredients.length >= 0 || resultUstensils.length >= 0 || resultAppliance.length >= 0*/ ) {
+        sum = 0
+        a = 0
+        b = 0
+        c = 0
 
-
-
-
-
-
+        for (let result of searchResult) {
+            const resIngredients = result.ingredients.map((el) => el.ingredient.toLowerCase().trim());
+            const resAppliance = result.appliance.toLowerCase();
+            const resUtensils = result.ustensils.map((el) => el).flat();
 
 
 
-        if (resultIngredients.length != 0 || resultUstensils.length != 0 || resultAppliance.length != 0 || searchValue.length >= 3) {
+            for (let ing of resultIngredients) {
 
-            if (arrayName.includes(searchValue)) {
-                d++
-            } {
-                d = -4
-            }
-
-            for (let result of resultIngredients) {
-
-                if (arrayIngredients.includes(result) && d >= 0) {
-                    a++
+                if (resIngredients.includes(ing)) {
+                    a = 1
                 } else {
                     a = -4;
                 }
+                console.log(a)
             }
             for (let app of resultAppliance) {
-                if (arrayAppliance.includes(app) && d >= 0) {
-                    b++
+                if (resAppliance.includes(app)) {
+                    b = 1
                 } else {
                     b = -4;
                 }
             }
 
             for (let ust of resultUstensils) {
-                if (arrayUtensils.includes(ust) && d >= 0) {
-                    c++
+                if (resUtensils.includes(ust)) {
+                    c = 1
                 } else {
                     c = -4
                 }
+                console.log(c)
             }
 
 
-            sum = a + b + c + d;
-        }
 
-        if (sum >= 0) {
-            /*  resultsArray = [];
-              resultsArray.push(array);
-              setCardFirst(resultsArray)*/
+            sum = a + b + c;
 
-            console.log(d)
+            if (sum >= 0) {
+                resultsArray = [];
+                resultsArray.push(result);
+                setCardFirst(resultsArray)
+            }
 
-
-        } else if (sum < 0) {
 
         }
-
 
     }
-
 }
-
-
 // console.log('test de récupération général');
 //console.log(resultIngredients)
 

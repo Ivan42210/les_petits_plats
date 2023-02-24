@@ -10,7 +10,7 @@ export function createTags(value) {
 
 }
 
-export function closeTag(event, array, list) {
+/*export function closeTag(event, array, list) {
     event.preventDefault();
     const spans = list.childNodes;
     const value = event.target.parentNode.firstChild.textContent;
@@ -25,4 +25,4 @@ export function closeTag(event, array, list) {
     //console.log(event.target.parentNode.firstChild.textContent);
     //console.log(list.childNodes);
 
-};
+}*/

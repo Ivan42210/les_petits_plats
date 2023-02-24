@@ -30,7 +30,7 @@ export function inputOpenFuntion(e) {
 
 
 
-    if (value.length >= 3) {
+    if (value.length >= 1) {
         spans.forEach((span) => {
             if (span.textContent.indexOf(value) == -1) {
                 span.classList.add('d-none')
@@ -45,7 +45,7 @@ export function inputOpenFuntion(e) {
         parent.classList.add('active');
 
 
-    } else if (value.length < 3) {
+    } else if (value.length < 1) {
         spans.forEach((span) => {
 
             span.classList.remove('d-none')

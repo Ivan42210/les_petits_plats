@@ -4,9 +4,9 @@ import { dropdownToggle, inputOpenFuntion } from "../utils/dropdown.js";
 import { tagFn, closeTag } from "../utils/apiTags.js";
 import { removeArray } from "../utils/removeArray.js";
 import { cardFactory } from "../factories/recipeCard.js";
-import { filterSearchBar } from "../utils/advancedFilters.js";
 
-let value = 0;
+
+let value = 0
 let resultsArray = [];
 let resultIngredients = [];
 let resultAppliance = [];
@@ -29,7 +29,7 @@ function setCardFirst(arrays) {
 }
 
 function searchBar(arrays) {
-    let resultTest = []
+
     const searchInput = document.getElementById('searchBar');
     searchInput.addEventListener('input', (e) => { searchFn(e) });
 
@@ -113,14 +113,23 @@ function DropdownPart(arrays) {
 
 
 function takeDatas(arrays) {
-    console.log(value)
+
     parentCards.innerHTML = '';
-    //let resultsArray = []
+    //let valueTest = []
+
 
     if (value.length > 3) {
 
-        filterSearchBar(arrays, value, resultsArray)
 
+
+        console.log(value)
+
+        function filterSearchBar(datas, comp) {
+
+            const search = datas.filter(function(arr) { return arr.name.toLowerCase().indexOf(comp.toLowerCase()) != -1; })
+            resultsArray = Object.values(search)
+
+        }
 
 
         /*    Ancien algorithme    
@@ -136,13 +145,50 @@ function takeDatas(arrays) {
 
             }
         }*/
+        filterSearchBar(arrays, value)
+
     } else {
         resultsArray = Object.values(arrays);
     }
 
+    function filterIngredient(datas, query) {
+        //const ingFilter = datas.filter(function(data) { return data.ingredients.map((ing) => { ing.ingredient.toLowerCase().indexOf(query) != 1 }) })
+        const filterIng = datas.filter(function(data) {
+            return data.ingredients.map((ing) => ing.ingredient.toLowerCase()).indexOf(query) != -1;
+        });
+        resultsArray = Object.values(filterIng);
+    }
 
+    function filterAppliance(datas, query) {
+        const filterApp = datas.filter(function(data) {
+            return data.appliance.toLowerCase().indexOf(query) != -1;
+        })
+        resultsArray = Object.values(filterApp);
+    }
+
+    function filterUstensils(datas, query) {
+        const filterUst = datas.filter(function(data) {
+            return data.ustensils.map((ust) => ust.toLowerCase()).indexOf(query) != -1;
+        })
+
+        resultsArray = Object.values(filterUst)
+    }
+
+    resultIngredients.forEach((el) => { filterIngredient(resultsArray, el); });
+    resultAppliance.forEach((el) => { filterAppliance(resultsArray, el); });
+    resultUstensils.forEach((el) => { filterUstensils(resultsArray, el) })
+
+
+
+    //  console.log(valueTest)
+
+
+    // console.log('test output')
+    // console.log(resultsArray)
+
+    /* new algorithme*/
     setCardFirst(resultsArray);
-
+    /* end new algorithme*/
 
 
     /*

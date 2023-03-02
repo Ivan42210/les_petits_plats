@@ -120,8 +120,6 @@ function takeDatas(arrays) {
 
     if (value.length > 3) {
 
-
-
         console.log(value)
 
         function filterSearchBar(datas, comp) {
@@ -131,20 +129,6 @@ function takeDatas(arrays) {
 
         }
 
-
-        /*    Ancien algorithme    
-
-         console.log(value)
-        for (let array of arrays) {
-
-            const arrayName = array.name.toLowerCase();
-
-            if (arrayName.indexOf(value) != -1) {
-
-                searchResult.push(array);
-
-            }
-        }*/
         filterSearchBar(arrays, value)
 
     } else {
@@ -153,24 +137,17 @@ function takeDatas(arrays) {
 
     function filterIngredient(datas, query) {
         //const ingFilter = datas.filter(function(data) { return data.ingredients.map((ing) => { ing.ingredient.toLowerCase().indexOf(query) != 1 }) })
-        const filterIng = datas.filter(function(data) {
-            return data.ingredients.map((ing) => ing.ingredient.toLowerCase()).indexOf(query) != -1;
-        });
+        const filterIng = datas.filter(function(data) { return data.ingredients.map((ing) => ing.ingredient.toLowerCase()).indexOf(query) != -1; });
         resultsArray = Object.values(filterIng);
     }
 
     function filterAppliance(datas, query) {
-        const filterApp = datas.filter(function(data) {
-            return data.appliance.toLowerCase().indexOf(query) != -1;
-        })
+        const filterApp = datas.filter(function(data) { return data.appliance.toLowerCase().indexOf(query) != -1; })
         resultsArray = Object.values(filterApp);
     }
 
     function filterUstensils(datas, query) {
-        const filterUst = datas.filter(function(data) {
-            return data.ustensils.map((ust) => ust.toLowerCase()).indexOf(query) != -1;
-        })
-
+        const filterUst = datas.filter(function(data) { return data.ustensils.map((ust) => ust.toLowerCase()).indexOf(query) != -1; });
         resultsArray = Object.values(filterUst)
     }
 
@@ -178,83 +155,11 @@ function takeDatas(arrays) {
     resultAppliance.forEach((el) => { filterAppliance(resultsArray, el); });
     resultUstensils.forEach((el) => { filterUstensils(resultsArray, el) })
 
-
-
-    //  console.log(valueTest)
-
-
-    // console.log('test output')
-    // console.log(resultsArray)
-
-    /* new algorithme*/
     setCardFirst(resultsArray);
-    /* end new algorithme*/
 
-
-    /*
-                ancien algorithme
-        let sum = 0
-        let a = 0
-        let b = 0
-        let c = 0
-
-        if (resultsArray.length != 0 /*&& resultIngredients.length >= 0 || resultUstensils.length >= 0 || resultAppliance.length >= 0 ) {
-            sum = 0
-            a = 0
-            b = 0
-            c = 0
-
-            for (let result of resultsArray) {
-                const resIngredients = result.ingredients.map((el) => el.ingredient.toLowerCase().trim());
-                const resAppliance = result.appliance.toLowerCase();
-                const resUtensils = result.ustensils.map((el) => el).flat();
-
-
-
-                for (let ing of resultIngredients) {
-
-                    if (resIngredients.includes(ing)) {
-                        a = 1
-                    } else {
-                        a = -4;
-                    }
-                    console.log(a)
-                }
-                for (let app of resultAppliance) {
-                    if (resAppliance.includes(app)) {
-                        b = 1
-                    } else {
-                        b = -4;
-                    }
-                }
-
-                for (let ust of resultUstensils) {
-                    if (resUtensils.includes(ust)) {
-                        c = 1
-                    } else {
-                        c = -4
-                    }
-                    console.log(c)
-                }
-
-
-
-                sum = a + b + c;
-
-                if (sum >= 0) {
-                    resultsArray = [];
-                    resultsArray.push(result);
-                    setCardFirst(resultsArray)
-                }
-
-
-            }
-
-        }*/
 }
 
-//console.log('test de récupération général');
-//console.log(resultIngredients)
+
 
 
 
